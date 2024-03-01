@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 # Be sure to set this variable to what your webserver user is. Typically it will be www-data or nginx
 # webserver_user=
