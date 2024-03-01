@@ -3,17 +3,19 @@
 # Be sure to set this variable to what your webserver user is. Typically it will be www-data or nginx
 # webserver_user=
 
+webserver_user=
+
 # Function to check and install lftp
 check_install_lftp() {
     if ! command -v lftp &> /dev/null; then
         echo "Installing lftp..."
         # Add installation command based on the package manager of the operating system
         if command -v apt-get &> /dev/null; then
-            sudo apt-get install -y lftp
+            apt-get install -y lftp
         elif command -v yum &> /dev/null; then
-            sudo yum install -y lftp
+            yum install -y lftp
         elif command -v pacman &> /dev/null; then
-            sudo pacman -S --noconfirm lftp
+            pacman -S --noconfirm lftp
         else
             echo "Unsupported package manager. Please install lftp manually and rerun the script."
             exit 1
@@ -22,7 +24,7 @@ check_install_lftp() {
 }
 
 # Check and install lftp if not present
-check_command "lftp"
+check_install_lftp
 
 if ! command -v mysqldump &> /dev/null; then
     echo "+------------------------------------------------------------------------------------------+"
