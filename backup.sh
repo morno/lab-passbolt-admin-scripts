@@ -101,6 +101,10 @@ echo "Creating archive of $backup_dir_date"
 echo "+------------------------------------------------------------------------------------------+"
 tar -czvf "$backup_dir_date.tar.gz" -C "$backup_dir_date" .
 echo "+------------------------------------------------------------------------------------------+"
+echo "Setting Permission so that only the backup user has the persmission for $backup_dir"
+echo "+------------------------------------------------------------------------------------------+"
+chmod 0600 $backup_dir_date.tar.gz
+echo "+------------------------------------------------------------------------------------------+"
 echo "Cleaning up $backup_dir"
 echo "+------------------------------------------------------------------------------------------+"
 rm "$backup_dir_date"/*
@@ -110,5 +114,5 @@ rmdir "$backup_dir_date"
 echo "Uploading backup to FTP server..."
 upload_to_ftp "$backup_file"
 
-echo "Backup completed, you can find the file as $backup_file"
+echo "Backup completed, you can find the file as $backup_file check also so that the backup file is in the ftp server"
 echo "+------------------------------------------------------------------------------------------+"
